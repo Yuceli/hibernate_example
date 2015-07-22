@@ -13,23 +13,23 @@ public class HibernateTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		UserDetails  user = new UserDetails();
-		user.setUserName("Hortencia Polanco");
-		user.setJoinedDate(new Date());
+		user.setUserName("Yuceli Polanco");
 		
-		
-		Address address = new Address();
-		address.setCity("Monterrey");
-		address.setState("Nuevo Leon");
-		address.setStreet("Calle 42");
-		address.setCode("97370");
-		
-		user.setHomeaddress(address);
+		Address address1 = new Address();
+		address1.setStreet("Calle 43");
+		address1.setCity("Merida");
+		address1.setState("Yucatán");
+		address1.setCode("97370");
 		
 		Address address2 = new Address();
 		address2.setStreet("Calle 43");
 		address2.setCity("Merida");
+		address2.setState("Yucatán");
+		address2.setCode("97370");
 		
-		user.setOfficeAdrees(address2);
+		user.getListOfAddress().add(address1);
+		user.getListOfAddress().add(address2);
+	
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();

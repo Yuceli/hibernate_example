@@ -1,6 +1,8 @@
 package org.uady.dto;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -13,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -24,24 +27,9 @@ public class UserDetails {
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment") 
 	private int userId;
-	
 	private String userName;
-	
-	@Temporal(TemporalType.DATE)
-	private Date joinedDate;
-	
-	@Embedded 
-	@AttributeOverrides({
-	@AttributeOverride(name="street", column=@Column(name="HOME_STREET_NAME")),
-	@AttributeOverride(name="city", column=@Column(name="HOME_CITY_NAME")),
-	@AttributeOverride(name="state", column=@Column(name="HOME_STATE_NAME")),
-	@AttributeOverride(name="code", column=@Column(name="HOME_CODE_NAME"))
-			
-	})
-	private Address homeaddress;
-	
-	@Embedded
-	private Address officeAdrees;
+	@ElementCollection
+	private Set<Address> listOfAddress = new HashSet();
 	
 	public int getUserId() {
 		return userId;
@@ -58,29 +46,15 @@ public class UserDetails {
 		this.userName = userName;
 	}
 
-	public Date getJoinedDate() {
-		return joinedDate;
+	public Set<Address> getListOfAddress() {
+		return listOfAddress;
 	}
 
-	public void setJoinedDate(Date joinedDate) {
-		this.joinedDate = joinedDate;
+	public void setListOfAddress(Set<Address> listOfAddress) {
+		this.listOfAddress = listOfAddress;
 	}
 
-	public Address getHomeaddress() {
-		return homeaddress;
-	}
-
-	public void setHomeaddress(Address homeaddress) {
-		this.homeaddress = homeaddress;
-	}
-
-	public Address getOfficeAdrees() {
-		return officeAdrees;
-	}
-
-	public void setOfficeAdrees(Address officeAdrees) {
-		this.officeAdrees = officeAdrees;
-	}
+	
 
 
 	
