@@ -33,9 +33,9 @@ public class UserDetails {
 	@Embedded 
 	@AttributeOverrides({
 	@AttributeOverride(name="street", column=@Column(name="HOME_STREET_NAME")),
-	@AttributeOverride(name="street", column=@Column(name="HOME_STREET_NAME")),
-	@AttributeOverride(name="street", column=@Column(name="HOME_STREET_NAME")),
-	@AttributeOverride(name="street", column=@Column(name="HOME_STREET_NAME"))
+	@AttributeOverride(name="city", column=@Column(name="HOME_CITY_NAME")),
+	@AttributeOverride(name="state", column=@Column(name="HOME_STATE_NAME")),
+	@AttributeOverride(name="code", column=@Column(name="HOME_CODE_NAME"))
 			
 	})
 	private Address homeaddress;
@@ -66,16 +66,23 @@ public class UserDetails {
 		this.joinedDate = joinedDate;
 	}
 
-
-	public Address getAddress() {
-		return address;
+	public Address getHomeaddress() {
+		return homeaddress;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setHomeaddress(Address homeaddress) {
+		this.homeaddress = homeaddress;
 	}
 
-	
+	public Address getOfficeAdrees() {
+		return officeAdrees;
+	}
+
+	public void setOfficeAdrees(Address officeAdrees) {
+		this.officeAdrees = officeAdrees;
+	}
+
+
 	
 
 }
