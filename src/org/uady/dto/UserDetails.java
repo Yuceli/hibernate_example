@@ -10,6 +10,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,11 +35,9 @@ public class UserDetails {
 	@GenericGenerator(name="increment", strategy = "increment") 
 	private int userId;
 	private String userName;
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	@JoinTable(name="USER_ADDRESS",
 				joinColumns=@JoinColumn(name="USER_ID"))
-	@GenericGenerator(name = "hilo-gen", strategy = "hilo")
-	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "hilo-gen", type = @Type(type="long") )
 	private Collection<Address> listOfAddress = new ArrayList<Address>();
 	
 	public int getUserId() {
