@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -35,10 +36,9 @@ public class UserDetails {
 	@GenericGenerator(name="increment", strategy = "increment") 
 	private int userId;
 	private String userName;
-	@ElementCollection(fetch=FetchType.EAGER)
-	@JoinTable(name="USER_ADDRESS",
-				joinColumns=@JoinColumn(name="USER_ID"))
-	private Collection<Address> listOfAddress = new ArrayList<Address>();
+	@OneToOne
+	private Vehicle vehicle;
+
 	
 	public int getUserId() {
 		return userId;
@@ -55,13 +55,17 @@ public class UserDetails {
 		this.userName = userName;
 	}
 
-	public Collection<Address> getListOfAddress() {
-		return listOfAddress;
+	public Vehicle getVehicle() {
+		return vehicle;
 	}
 
-	public void setListOfAddress(Collection<Address> listOfAddress) {
-		this.listOfAddress = listOfAddress;
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
+	
+	
+
+	
 
 	
 	
